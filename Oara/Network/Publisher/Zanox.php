@@ -239,15 +239,25 @@ class Zanox extends \Oara\Network
 
     }
 
-    public function getProducts(array $merchantID = NULL, $page, $pageSize, $iteration = 0)
+    public function getProducts(array $params = [], $iteration = 0)
     {
         $productList = array();
         try {
-            $productList = $this->_apiClient->searchProducts(null, null, null, null, $merchantID, null, null, null, null, $page, $pageSize);
+            $productList = $this->_apiClient->searchProducts($params['query'],
+                $params['searchType'],
+                $params['region'],
+                $params['categoryId'],
+                $params['programId'],
+                $params['hasImages'],
+                $params['minPrice'],
+                $params['maxPrice'],
+                $params['adspaceId'],
+                $params['page'],
+                $params['items']);
         } catch (\Exception $e) {
             $iteration++;
             if ($iteration < 5) {
-                $productList = self::getProducts($page, $pageSize, $iteration);
+                $productList = self::getProducts($params, $iteration);
             }
         }
         return $productList;
