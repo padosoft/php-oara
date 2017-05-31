@@ -238,4 +238,28 @@ class Zanox extends \Oara\Network
         return $transactionList;
 
     }
+
+    public function getProducts(array $params = [], $iteration = 0)
+    {
+        $productList = array();
+        try {
+            $productList = $this->_apiClient->searchProducts($params['query'],
+                $params['searchType'],
+                $params['region'],
+                $params['categoryId'],
+                $params['programId'],
+                $params['hasImages'],
+                $params['minPrice'],
+                $params['maxPrice'],
+                $params['adspaceId'],
+                $params['page'],
+                $params['items']);
+        } catch (\Exception $e) {
+            $iteration++;
+            if ($iteration < 5) {
+                $productList = self::getProducts($params, $iteration);
+            }
+        }
+        return $productList;
+    }
 }
