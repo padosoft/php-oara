@@ -237,7 +237,11 @@ class WebGains extends \Oara\Network
                     $transaction['commission'] = $transactionObject->commission;
                     // Check both for status + paymentStatus
                     if ($transactionObject->status == 'confirmed') {
+                      if ($transactionObject->paymentStatus == 'paid' || $transactionObject->paymentStatus == 'cleared') {
                         $transaction['status'] = \Oara\Utilities::STATUS_CONFIRMED;
+                      } else {
+                        $transaction['status'] = \Oara\Utilities::STATUS_PENDING;
+                      }
                     }
                     elseif ($transactionObject->status == 'delayed') {
                         $transaction['status'] = \Oara\Utilities::STATUS_PENDING;
@@ -245,7 +249,7 @@ class WebGains extends \Oara\Network
                     elseif ($transactionObject->status == 'cancelled') {
                         $transaction['status'] = \Oara\Utilities::STATUS_DECLINED;
                     }
-                    if ($transactionObject->paymentStatus == 'paid') {
+                    if ($transactionObject->paymentStatus == 'paid' || $transactionObject->paymentStatus == 'cleared') {
                         $transaction['paid'] = true;
                     }
                     else {
