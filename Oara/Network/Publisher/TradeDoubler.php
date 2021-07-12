@@ -463,7 +463,7 @@ class TradeDoubler extends \Oara\Network
 		$exportReport = $this->_client->get($urls);
 
 
-		$dom = new \Zend\Dom\Query($exportReport[0]);
+		$dom = new \Laminas\Dom\Query($exportReport[0]);
 		$results = $dom->execute('//a');
 
 		$urls = array();
