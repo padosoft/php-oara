@@ -388,6 +388,7 @@ class CommissionJunctionGraphQL extends \Oara\Network
                     $transaction['original'] = ($record->original == true);
                     // 'original-action-id' is used as reference field between original commission and adjust/correction commission - 2018-07-13 <PN>
                     $transaction['original-action-id'] = $record->originalActionId;
+                    $transaction['voucher_code'] = $record->coupon;
 
                     // Add new record to return array
                     $a_transactions[] = $transaction;
