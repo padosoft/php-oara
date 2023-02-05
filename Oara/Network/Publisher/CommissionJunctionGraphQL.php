@@ -355,6 +355,10 @@ class CommissionJunctionGraphQL extends \Oara\Network
                     //event-date - The associated event date for the item in UTC time zone.
                     $transactionDate = \DateTime::createFromFormat("Y-m-d\TH:i:sO", $record->eventDate);
                     $transaction['date'] = $transactionDate->format("Y-m-d H:i:sO");
+
+                    $clickDate = \DateTime::createFromFormat("Y-m-d\TH:i:sO", $record->clickDate);
+                    $transaction['click_date'] = $clickDate->format("Y-m-d H:i:sO");
+
                     $transaction['custom_id'] = '';
                     if (isset($record->shopperId)) {
                         $transaction['custom_id'] = $record->shopperId;
