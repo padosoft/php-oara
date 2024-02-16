@@ -6,7 +6,7 @@
         "php": ">=5.3.0",
         "phpoffice/phpexcel": "1.8.*",
         "ext-curl": "*",
-        "zendframework/zend-dom": "*"
+        "laminas/laminas-dom": "*"
     },
 
     "autoload": {
