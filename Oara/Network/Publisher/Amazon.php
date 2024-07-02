@@ -31,6 +31,7 @@ namespace Oara\Network\Publisher;
 class Amazon extends \Oara\Network
 {
 
+    protected array $_credentials;
     public function login($credentials)
     {
         $this->_credentials = $credentials;

@@ -37,6 +37,9 @@ class TradeDoubler extends \Oara\Network
 	protected $_client = null;
 	protected $_dateFormat = null;
 	protected $_apiUrl = 'https://connect.tradedoubler.com';
+	protected array $_credentials;
+	protected string $_grant_type;
+	protected string $_token;
 
 	public function login($credentials)
 	{

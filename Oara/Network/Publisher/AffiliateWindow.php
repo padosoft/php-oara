@@ -124,7 +124,7 @@ class AffiliateWindow extends \Oara\Network
                 if ($result === false || !is_array($result)) {
                     throw new \Exception("php-oara AffiliateWindow - file_get_contents error");
                 } else {
-                    $content = \utf8_encode($result[0]);
+                    $content = mb_convert_encoding($result[0], 'UTF-8', 'ISO-8859-1');
                     $merchantList = \json_decode($content);
                 }
                 foreach ($merchantList as $merchant) {
@@ -215,7 +215,7 @@ class AffiliateWindow extends \Oara\Network
                 throw new \Exception("php-oara AffiliateWindow - file_get_contents is false");
             } else {
                 //echo "oara step3<br> ";
-                $content = \utf8_encode($result);
+                $content = mb_convert_encoding($result, 'UTF-8', 'ISO-8859-1');
                 $transactionObjectFull = \json_decode($content);
                 // <slawn> 2018-10-18
                 foreach($transactionObjectFull as $transactionObject){
@@ -382,7 +382,7 @@ class AffiliateWindow extends \Oara\Network
             {
                 throw new \Exception("php-oara AffiliateWindow getAdvertisers - http error");
             } else {
-                $content = \utf8_encode($result[0]);
+                $content = mb_convert_encoding($result[0], 'UTF-8', 'ISO-8859-1');;
                 $advList = \str_getcsv($content, "\n");
             }
         } catch (\Exception $e) {
